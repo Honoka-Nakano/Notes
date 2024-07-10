@@ -3,7 +3,7 @@ import { getAuthSession } from '@/lib/nextauth'
 import Profile from '@/components/settings/Profile'
 
 // プロフィールページ
-const ProfilePage = async() => {
+const ProfilePage = async () => {
     // 認証情報
     const user = await getAuthSession()
 
