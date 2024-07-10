@@ -15,6 +15,11 @@ const items = [
         title: 'パスワード変更',
         href: '/Settings/Password',
     },
+    {
+        title: 'アカウント削除',
+        href: '/Settings/Delete',
+        idDelets: true,
+    }
 ]
 
 // サイドナビゲーション
@@ -32,7 +37,8 @@ const SidebarNav = () => {
                         pathname === item.href
                             ? 'bg-muted hover:bg-muted'
                             : 'hover:bg-transparet hover:underline',
-                        'justify-start'
+                        'justify-start',
+                        item.idDelets ? 'text-red-500' : '',
                     )}
                 >
                     {item.title}

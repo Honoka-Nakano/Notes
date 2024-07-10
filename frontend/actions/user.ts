@@ -540,3 +540,36 @@ export const updatePassword = async ({
 
     return { success: true }
 }
+
+interface DeleteAccountProps {
+    accessToken: string
+    currentPassword: string
+}
+
+export const deleteAccount = async ({
+    accessToken,
+    currentPassword,
+}: DeleteAccountProps) => {
+    const body = JSON.stringify({
+        current_password: currentPassword,
+    })
+
+    const options = {
+        method: 'DELETE',
+        headers: {
+            Authorization: `JWT ${accessToken}`,
+            'Content-Type': 'application/json',
+        },
+        body,
+    }
+
+    // アカウント削除を送信
+    const result = await fetchAPI('/api/auth/users/me/', options)
+
+    if (!result.success) {
+        console.error(result.error)
+        return { success: false }
+    }
+
+    return { success: true }
+}
