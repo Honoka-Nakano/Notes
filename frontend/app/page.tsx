@@ -1,27 +1,25 @@
-// メインページ
-import Image from 'next/image'
-import { UserType } from '@/lib/nextauth'
-import UserHome from '@/components/home/UserHome'
+// import SidebarNav from '@/components/notes/SidevarNav'
+import AllNotes from '@/components/notes/AllNotes'
 import { getAuthSession } from '@/lib/nextauth'
+import { redirect } from 'next/navigation'
 
-interface HomeProps {
-  user: UserType | null
-}
+// メインページ
+const Home = async () => {
+  const user = await getAuthSession()
 
-const Home = ({ user }: HomeProps) => {
+  if (user) {
+    redirect('/Notes/All')
+  }
+
   return (
     <div>
-      {user ?(
-        <div className='w-full'>
-          <UserHome />
-        </div>
-      ) : (
+      <div>
         <div className='w-11/12 h-full mx-auto'>
           <div className='h-[300px] flex items-center'>
             <p className='w-full font-bold text-5xl text-center'>Let&apos;s Share All Notes easily.</p>
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }
