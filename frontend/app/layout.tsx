@@ -6,6 +6,7 @@ import Navigation from '@/components/auth/Navigation'
 import AuthProvider from "@/components/providers/AuthProvider"
 import ToastProvider from "@/components/providers/ToastProvider"
 import { redirect } from 'next/navigation'
+import Home from '@/app/page'
 
 const inter = Inter({ subsets: ["latin"] });
 
