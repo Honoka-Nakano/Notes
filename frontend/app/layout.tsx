@@ -5,8 +5,6 @@ import "./globals.css";
 import Navigation from '@/components/auth/Navigation'
 import AuthProvider from "@/components/providers/AuthProvider"
 import ToastProvider from "@/components/providers/ToastProvider"
-import { redirect } from 'next/navigation'
-import Home from '@/app/page'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,11 +33,11 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
     <html lang="ja" className="h-[100svh]">
       <body className={inter.className}>
         <AuthProvider>
-          <div className="flex min-h-screen flex-col">
+          <div className="flex h-[100svh] flex-col">
             <Navigation user={user} />
             <ToastProvider />
 
-            <main className="container h-full mx-auto max-w-screen-md flex-1 px-2">
+            <main className="w-full h-full mx-auto flex-1 px-2">
               {children}
             </main>
 
