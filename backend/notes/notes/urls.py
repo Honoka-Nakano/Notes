@@ -8,6 +8,8 @@ urlpatterns = [
     path('api/auth/', include('djoser.urls.jwt')),
     # アカウント
     path('api/', include('accounts.urls')),
+    # 投稿
+    path('api/', include('note.urls')),
     # 管理画面
     path('admin/', admin.site.urls),
 ]

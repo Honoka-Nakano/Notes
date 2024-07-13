@@ -23,7 +23,7 @@ const UserDetail = ({ user }: UserDetailProps) => {
             </div>
             <div className='space-y-5 break-words whitespace-pre-wrap mb-5'>
                 <div className='font-bold text-xl text-center'>{user.name}</div>
-                <div className='leading-relaxed'>{user.introduction}</div>
+                <div className='leading-relaxed text-center'>{user.introduction}</div>
             </div>
         </div>
     )
