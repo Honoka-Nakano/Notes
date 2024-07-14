@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { format } from 'date-fns'
 import { useRouter } from 'next/navigation'
 import { Pencil, Trash2 } from 'lucide-react'
-import { NoteType } from '@/actions/note'
+import { NoteType, deleteNote } from '@/actions/note'
 import { UserType } from '@/lib/nextauth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,6 +17,39 @@ interface NoteDetailProps {
 
 // 投稿詳細
 const NoteDetail = ({ note, user }: NoteDetailProps) => {
+    const router = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
+
+    // 削除ボタンクリック時の処理
+    const handleDeleteNote = async () => {
+        setIsLoading(true)
+        if (note.user.uid !== user?.uid) {
+            toast.error('投稿は削除できません')
+            return
+        }
+
+        try {
+            // 投稿削除
+            const res = await deleteNote({
+                accessToken: user.accessToken,
+                noteId: note.uid,
+            })
+
+            if (!res.success) {
+                toast.error('投稿の削除に失敗しました')
+                return
+            }
+
+            toast.success('投稿を削除しました')
+            router.push('/Notes/Note')
+            router.refresh()
+        } catch (error) {
+            toast.error('投稿の削除に失敗しました')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     return (
         <div className='space-y-8'>
             <div className='aspect-[16/9] relative'>
@@ -65,6 +98,14 @@ const NoteDetail = ({ note, user }: NoteDetailProps) => {
                             <Pencil className='w-5 h-5' />
                         </div>
                     </Link>
+
+                    <button
+                        className='hover:bg-gray-100 p-2 rounded-full'
+                        disabled={isLoading}
+                        onClick={handleDeleteNote}
+                    >
+                        <Trash2 className='w-5 h-5 text-red-500' />
+                    </button>
                 </div>
             )}
         </div>

@@ -88,8 +88,8 @@ const Password = ({ user }: PasswordProps) => {
     }
 
     return (
-        <div>
-            <div className='text-xl font-bold text-center mb-5'>パスワード変更</div>
+        <div className=''>
+            <div className=' text-xl font-bold text-center mb-5'>パスワード変更</div>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
