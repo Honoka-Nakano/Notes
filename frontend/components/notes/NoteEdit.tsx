@@ -86,7 +86,7 @@ const NoteEdit = ({ user, note}: NoteEditProps) => {
             }
 
             toast.success('投稿を編集しました')
-            router.push(`/Notes/Note/${note.uid}`)
+            router.push('/Notes/Note')
             router.refresh
         } catch (error) {
             toast.error('投稿の編集に失敗しました')
