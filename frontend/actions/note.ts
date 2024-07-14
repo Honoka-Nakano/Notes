@@ -184,11 +184,36 @@ export const updateNote = async ({
     }
 
     // 投稿編集を送信
-    const result = await fetchAPI(`/api/notes/${noteId}`, options)
+    const result = await fetchAPI(`/api/notes/${noteId}/`, options)
 
     if (!result.success) {
         console.error(result.error)
         return { success: false }
+    }
+
+    return { success: true }
+}
+
+// 投稿削除
+interface DeleteNoteType {
+    accessToken: string
+    noteId: string
+}
+
+export const deleteNote = async ({ accessToken, noteId }: DeleteNoteType) => {
+    const options = {
+        method: 'DELETE',
+        headers: {
+            Authorization: `JWT ${accessToken}`,
+        },
+    }
+
+    // 投稿削除を送信
+    const result = await fetchAPI(`/api/notes/${noteId}/`, options)
+
+    if (!result.success) {
+        console.error(result.error)
+        return { success: false}
     }
 
     return { success: true }
