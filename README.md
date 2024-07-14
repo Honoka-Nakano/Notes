@@ -1,4 +1,10 @@
 ### メモ共有アプリ『Notes』
 
-https://github.com/user-attachments/assets/898c7299-e731-4948-aae3-f75d071194ba
+### 概要
 
+### 経緯
+
+### 技術
+
+- フロントエンド：React(Next.js)
+- バックエンド：Django
